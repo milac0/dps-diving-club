@@ -1,4 +1,5 @@
 import $ from "jquery";
+import Headroom from "headroom.js";
 
 (function ($) {
   // Use this variable to set up the common and page specific functions. If you
@@ -49,12 +50,15 @@ import $ from "jquery";
   // Load Events
   $(document).ready(UTIL.loadEvents);
 
-  var options = {
+  var headroomOptions = {
     // vertical offset in px before element is first unpinned
     offset: 200,
   };
 
-  //   $(".js-headroom").headroom(options);
+  var headroomElement = document.querySelector("header");
+  var headroom = new Headroom(headroomElement);
+  // initialise
+  headroom.init(headroomOptions);
 
   $(".burger-menu__icon").on("click", function () {
     $(".burger-menu").toggleClass("burger-menu--opened");
@@ -64,6 +68,13 @@ import $ from "jquery";
   });
 
   $(".content-overlay").on("click", function () {
+    $(".content-overlay").removeClass("content-overlay--on");
+    $(".icon__line--second").removeClass("icon__line--opened");
+    $(".burger-menu").removeClass("burger-menu--opened");
+    $("header").removeClass("header--opened");
+  });
+
+  $(".burger-menu__item").on("click", function () {
     $(".content-overlay").removeClass("content-overlay--on");
     $(".icon__line--second").removeClass("icon__line--opened");
     $(".burger-menu").removeClass("burger-menu--opened");
