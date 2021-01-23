@@ -1,6 +1,30 @@
-@import 'components/normalize';
-@import 'components/variables';
-@import 'components/typography';
-@import 'components/icon';
-@import 'components/button';
-@import 'pages/base';
+@import "../../node_modules/normalize.css/normalize.css";
+@import "colors";
+@import "variables";
+@import "node_modules/media-blender/media";
+
+$media-breakpoints: (
+  mobile: 0 767,
+);
+
+@import "header";
+@import "homepage";
+@import "footer";
+
+* {
+  font-family: "Roboto", Helvetica, sans-serif;
+  color: $black;
+}
+
+.container {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 40px;
+  padding-left: 40px;
+
+  @include media(mobile) {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
